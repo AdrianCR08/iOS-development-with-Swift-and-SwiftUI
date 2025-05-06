@@ -26,6 +26,7 @@ struct ContentView: View {
     ]
     @State var cardCount: Int = 4
     var body: some View {
+        Text("Memorize").font(.largeTitle).fontWeight(.black)
         ScrollView {
             cards
                 .padding()
