@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct Game: View {
-    let category: String
-    init(category: String) {
+    let category: Category
+    init(category: Category) {
         self.category = category
     }
     var body: some View {
-        VStack {
-            Text("Game View").font(.largeTitle)
+        ZStack {
+            Color(category.color)
             Text("Category: \(category)").font(.title2)
+            // Crads logic should appear here!
         }
-        .navigationTitle(category)
+        .navigationTitle(category.name)
         .onAppear {
             print(category)
         }
     }
 }
-
 #Preview {
     
 }
