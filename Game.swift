@@ -9,9 +9,11 @@ import SwiftUI
 
 struct Game: View {
     let category: Category
+    @State private var shuffledEmojis: [String]
     @State private var cardCount: Int
     init(category: Category, cardCount: Int) {
         self.category = category
+        self._shuffledEmojis = State(initialValue: category.emojis.shuffled())
         self._cardCount = State(initialValue: category.emojis.count)
     }
     var body: some View {
@@ -41,7 +43,7 @@ struct Game: View {
     
     @ViewBuilder var cards: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]) {
-            ForEach(category.emojis.prefix(cardCount), id: \.self) { emoji in
+            ForEach(shuffledEmojis.prefix(cardCount), id: \.self) { emoji in
                 CardsView(content: [emoji], color: category.color)
                     .transition(.scale.combined(with: .opacity))
             }
@@ -50,6 +52,9 @@ struct Game: View {
         .toolbarBackground(LinearGradient(colors: [category.color.opacity(0.3), category.color.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing), for: .navigationBar)
         .toolbarBackground(.visible, for: .navigationBar)
         .animation(.spring(response: 0.5, dampingFraction: 0.7, blendDuration: 0.5), value: cardCount)
+        .onAppear {
+            shuffledEmojis.shuffle()
+        }
 
     }
     
