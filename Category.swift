@@ -15,8 +15,12 @@ struct Category {
     let color: Color
     let symbol: String
     
+    func duplicateEmojis() -> [String] {
+            return emojis.flatMap { [$0, $0] }
+        }
+    
     static let all: [Category] = [
-        Category(name: "Animals", emojis: ["🐶", "🐱", "🐭", "🐰", "🦊", "🐻", "🐯", "🐷", "🐸", "🐵", "🦁", "🐮"], color: Color.red, symbol: "pawprint.circle"),
+        Category(name: "Animals", emojis: ["🐶", "🐱", "🐭", "🐰", "🦊", "🐻", "🐯", "🐷", "🐸", "🐵", "🦁", "🐮",], color: Color.red, symbol: "pawprint.circle"),
         Category(name: "Food", emojis: ["🍕", "🍗", "🍔", "🌭", "🌮", "🍟", "🥪", "🍤", "🍙", "🍫", "🥨", "🧁"], color: Color.yellow, symbol: "fork.knife.circle"),
         Category(name: "Halloween", emojis: ["👻", "🎃", "🧙", "🕷️", "😈", "💀", "🧛", "🧟", "⚰️", "🌙", "🗡️", "👹"], color: Color.orange, symbol: "moon.circle"),
         Category(name: "Emotions", emojis: ["😀", "🥹", "😅", "😇", "😍", "😜", "😎", "🤩", "🥳", "😭", "😡", "🤢"], color: Color.purple, symbol: "face.smiling"),

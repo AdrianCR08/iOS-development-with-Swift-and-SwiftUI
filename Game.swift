@@ -13,8 +13,9 @@ struct Game: View {
     @State private var cardCount: Int
     init(category: Category, cardCount: Int) {
         self.category = category
-        self._shuffledEmojis = State(initialValue: category.emojis.shuffled())
-        self._cardCount = State(initialValue: category.emojis.count)
+        let duplicatedEmojis = category.duplicateEmojis().enumerated().map { "\($0.offset)-\($0.element)" }
+        self._shuffledEmojis = State(initialValue: duplicatedEmojis.shuffled())
+        self._cardCount = State(initialValue: duplicatedEmojis.count)
     }
     var body: some View {
         ZStack {
@@ -43,8 +44,9 @@ struct Game: View {
     
     @ViewBuilder var cards: some View {
         LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]) {
-            ForEach(shuffledEmojis.prefix(cardCount), id: \.self) { emoji in
-                CardsView(content: [emoji], color: category.color)
+            ForEach(shuffledEmojis.prefix(cardCount), id: \.self) { emojiWithID in
+                let emoji = String(emojiWithID.split(separator: "-")[1])
+                CardsView(content: emoji, color: category.color)
                     .transition(.scale.combined(with: .opacity))
             }
         }
@@ -55,7 +57,6 @@ struct Game: View {
         .onAppear {
             shuffledEmojis.shuffle()
         }
-
     }
     
     @ViewBuilder
@@ -65,7 +66,7 @@ struct Game: View {
           }, label: {
               Image(systemName: symbol)
           })
-          .disabled(cardCount + offset < 1 || cardCount + offset > category.emojis.count)
+          .disabled(cardCount + offset < 1 || cardCount + offset > shuffledEmojis.count)
       }
     
     @ViewBuilder var cardAdder: some View {
@@ -80,7 +81,7 @@ struct Game: View {
 }
 
 struct CardsView: View {
-    let content: [String]
+    let content: String
     let color: Color
     @State var isFaceUp = false
     var body: some View {
@@ -89,7 +90,7 @@ struct CardsView: View {
             Group {
                 base.fill(.white)
                 base.stroke(color, lineWidth: 2)
-                Text(content.joined(separator: " "))
+                Text(content)
                     .font(.largeTitle)
             }
             .opacity(isFaceUp ? 1 : 0)
