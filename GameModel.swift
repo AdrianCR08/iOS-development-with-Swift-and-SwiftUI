@@ -6,23 +6,25 @@
 //
 
 import Foundation
-
 import SwiftUI
 
-struct Category {
+struct GameModel {
     let name: String
     let emojis: [String]
     let color: Color
     let symbol: String
     
-    func duplicateEmojis() -> [String] {
-            return emojis.flatMap { [$0, $0] }
-        }
+    init(name: String, emojis: [String], color: Color, symbol: String) {
+        self.name = name
+        self.emojis = emojis
+        self.color = color
+        self.symbol = symbol
+    }
     
-    static let all: [Category] = [
-        Category(name: "Animals", emojis: ["🐶", "🐱", "🐭", "🐰", "🦊", "🐻", "🐯", "🐷", "🐸", "🐵", "🦁", "🐮",], color: Color.red, symbol: "pawprint.circle"),
-        Category(name: "Food", emojis: ["🍕", "🍗", "🍔", "🌭", "🌮", "🍟", "🥪", "🍤", "🍙", "🍫", "🥨", "🧁"], color: Color.yellow, symbol: "fork.knife.circle"),
-        Category(name: "Halloween", emojis: ["👻", "🎃", "🧙", "🕷️", "😈", "💀", "🧛", "🧟", "⚰️", "🌙", "🗡️", "👹"], color: Color.orange, symbol: "moon.circle"),
-        Category(name: "Emotions", emojis: ["😀", "🥹", "😅", "😇", "😍", "😜", "😎", "🤩", "🥳", "😭", "😡", "🤢"], color: Color.purple, symbol: "face.smiling"),
+    static let all: [GameModel] = [
+        GameModel(name: "Animals", emojis: ["🐶", "🐱", "🐭", "🐰", "🦊", "🐻", "🐯", "🐷", "🐸", "🐵", "🦁", "🐮",], color: .red, symbol: "pawprint.circle"),
+        GameModel(name: "Food", emojis: ["🍕", "🍗", "🍔", "🌭", "🌮", "🍟", "🥪", "🍤", "🍙", "🍫", "🥨", "🧁"], color: .yellow, symbol: "fork.knife.circle"),
+        GameModel(name: "Halloween", emojis: ["👻", "🎃", "🧙", "🕷️", "😈", "💀", "🧛", "🧟", "⚰️", "🌙", "🗡️", "👹"], color: .orange, symbol: "moon.circle"),
+        GameModel(name: "Emotions", emojis: ["😀", "🥹", "😅", "😇", "😍", "😜", "😎", "🤩", "🥳", "😭", "😡", "🤢"], color: .purple, symbol: "face.smiling"),
     ]
 }
