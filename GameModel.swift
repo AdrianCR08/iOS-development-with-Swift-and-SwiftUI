@@ -8,7 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct GameModel {
+struct GameModel: Identifiable{
+    var id = UUID()
     let name: String
     let emojis: [String]
     let color: Color
