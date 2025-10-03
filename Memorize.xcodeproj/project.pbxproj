@@ -42,6 +42,11 @@
 			path = MemorizeTests;
 			sourceTree = "<group>";
 		};
+		3A54936D2E8FA3F200104B57 /* docs */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = docs;
+			sourceTree = "<group>";
+		};
 		3AE9C8422DB762B200E9C832 /* Memorize */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Memorize;
@@ -70,6 +75,7 @@
 		3AE9C8372DB762B200E9C832 = {
 			isa = PBXGroup;
 			children = (
+				3A54936D2E8FA3F200104B57 /* docs */,
 				3AD7FECE2DEA7571007B3D93 /* CardModel.swift */,
 				3A0CBDB12DE958B40054C49A /* GameModel.swift */,
 				3A0CBDB22DE958B40054C49A /* GameView.swift */,
@@ -130,6 +136,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				3A54936D2E8FA3F200104B57 /* docs */,
 				3AE9C8422DB762B200E9C832 /* Memorize */,
 			);
 			name = Memorize;
