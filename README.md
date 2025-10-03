@@ -2,7 +2,7 @@
 A memory card matching game built in SwiftUI with MVVM architecture.
 
 ## 📱 Preview
-<img src="screenshots/home.png" width="250"/>
+<img src="docs/MemorizeApp.jpeg" width="250"/>
 
 ## ✨ Features
 
